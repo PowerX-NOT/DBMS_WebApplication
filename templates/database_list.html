@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Select a Database</h2>
+<form method="post" action="{{ url_for('use_database') }}">
+    <input type="hidden" name="user" value="{{ user }}">
+    <input type="hidden" name="password" value="{{ password }}">
+    <select name="database">
+        {% for db in databases %}
+        <option value="{{ db }}">{{ db }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Use Database</button>
+</form>
+{% endblock %}
+
