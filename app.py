@@ -28,16 +28,11 @@ def login():
         flash(f"Error: {err}")
         return redirect(url_for('login_page'))
 
-@app.route('/use_database', methods=['POST', 'GET'])
+@app.route('/use_database', methods=['GET', 'POST'])
 def use_database():
-    if request.method == 'POST':
-        db_name = request.form['database']
-        user = request.form['user']
-        password = request.form['password']
-    else:
-        db_name = request.args.get('db_name')
-        user = request.args.get('user')
-        password = request.args.get('password')
+    db_name = request.args.get('db_name') if request.method == 'GET' else request.form['database']
+    user = request.args.get('user') if request.method == 'GET' else request.form['user']
+    password = request.args.get('password') if request.method == 'GET' else request.form['password']
 
     try:
         conn = mysql.connector.connect(
@@ -77,24 +72,21 @@ def table_actions(table_name):
             return render_template('view_data.html', table_name=table_name, columns=columns, rows=rows)
 
         elif action == "add_data":
-            # Render form for adding data
             cursor.execute(f"DESCRIBE {table_name}")
             columns = [col[0] for col in cursor.fetchall()]
             return render_template('add_data.html', table_name=table_name, columns=columns, db_name=db_name, user=user, password=password)
 
         elif action == "update_data":
-            # Render form for updating data
             cursor.execute(f"DESCRIBE {table_name}")
             columns = [col[0] for col in cursor.fetchall()]
             return render_template('update_data.html', table_name=table_name, columns=columns, db_name=db_name, user=user, password=password)
 
         elif action == "delete_data":
-            # Render form for deleting data
             return render_template('delete_data.html', table_name=table_name, db_name=db_name, user=user, password=password)
 
     except mysql.connector.Error as err:
         flash(f"Error: {err}")
-        return redirect(url_for('use_database'))
+        return redirect(url_for('use_database', db_name=db_name, user=user, password=password))
 
 @app.route('/add_data/<table_name>', methods=['POST'])
 def add_data(table_name):
@@ -116,10 +108,10 @@ def add_data(table_name):
         cursor.execute(f"INSERT INTO {table_name} ({columns}) VALUES ({values})")
         conn.commit()
         flash("Data added successfully.")
-        return redirect(url_for('use_database'))
+        return redirect(url_for('use_database', db_name=db_name, user=user, password=password))
     except mysql.connector.Error as err:
         flash(f"Error: {err}")
-        return redirect(url_for('use_database'))
+        return redirect(url_for('use_database', db_name=db_name, user=user, password=password))
 
 @app.route('/update_data/<table_name>', methods=['POST'])
 def update_data(table_name):
@@ -141,10 +133,10 @@ def update_data(table_name):
         cursor.execute(f"UPDATE {table_name} SET {update_column} = '{update_value}' WHERE {condition}")
         conn.commit()
         flash("Data updated successfully.")
-        return redirect(url_for('use_database'))
+        return redirect(url_for('use_database', db_name=db_name, user=user, password=password))
     except mysql.connector.Error as err:
         flash(f"Error: {err}")
-        return redirect(url_for('use_database'))
+        return redirect(url_for('use_database', db_name=db_name, user=user, password=password))
 
 @app.route('/delete_data/<table_name>', methods=['POST'])
 def delete_data(table_name):
@@ -164,10 +156,10 @@ def delete_data(table_name):
         cursor.execute(f"DELETE FROM {table_name} WHERE {condition}")
         conn.commit()
         flash("Data deleted successfully.")
-        return redirect(url_for('use_database'))
+        return redirect(url_for('use_database', db_name=db_name, user=user, password=password))
     except mysql.connector.Error as err:
         flash(f"Error: {err}")
-        return redirect(url_for('use_database'))
+        return redirect(url_for('use_database', db_name=db_name, user=user, password=password))
 
 if __name__ == '__main__':
     app.run(debug=True)
