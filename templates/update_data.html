@@ -16,13 +16,23 @@
                 <input type="hidden" name="db_name" value="{{ db_name }}">
                 <input type="hidden" name="user" value="{{ user }}">
                 <input type="hidden" name="password" value="{{ password }}">
+
+                <!-- Condition for update -->
                 <label for="condition">Condition (e.g., id = 1):</label>
                 <input type="text" id="condition" name="condition" required>
-                
-                {% for column in columns %}
-                <label for="{{ column }}">{{ column }}:</label>
-                <input type="text" id="{{ column }}" name="{{ column }}" required>
-                {% endfor %}
+
+                <!-- Dropdown to select column -->
+                <label for="update_column">Column to Update:</label>
+                <select id="update_column" name="update_column" required>
+                    {% for column in columns %}
+                    <option value="{{ column }}">{{ column }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Input for new value -->
+                <label for="update_value">New Value:</label>
+                <input type="text" id="update_value" name="update_value" required>
+
                 <button class="action-btn" type="submit">Update Data</button>
             </form>
             <a href="{{ url_for('use_database') }}" class="back-link">Back</a>
