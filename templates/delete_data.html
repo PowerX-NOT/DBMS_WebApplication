@@ -20,7 +20,7 @@
                 <input type="text" id="condition" name="condition" required>
                 <button class="action-btn" type="submit">Delete Data</button>
             </form>
-            <a href="{{ url_for('use_database') }}" class="back-link">Back</a>
+            <a href="{{ url_for('use_database', db_name=db_name, user=user, password=password) }}" class="back-link">Back</a>
         </div>
     </div>
 </body>

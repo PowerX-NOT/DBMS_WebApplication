@@ -28,11 +28,16 @@ def login():
         flash(f"Error: {err}")
         return redirect(url_for('login_page'))
 
-@app.route('/use_database', methods=['POST'])
+@app.route('/use_database', methods=['POST', 'GET'])
 def use_database():
-    db_name = request.form['database']
-    user = request.form['user']
-    password = request.form['password']
+    if request.method == 'POST':
+        db_name = request.form['database']
+        user = request.form['user']
+        password = request.form['password']
+    else:
+        db_name = request.args.get('db_name')
+        user = request.args.get('user')
+        password = request.args.get('password')
 
     try:
         conn = mysql.connector.connect(

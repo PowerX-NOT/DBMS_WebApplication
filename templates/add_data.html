@@ -22,7 +22,7 @@
                 {% endfor %}
                 <button class="action-btn" type="submit">Add Data</button>
             </form>
-            <a href="{{ url_for('use_database') }}" class="back-link">Back</a>
+            <a href="{{ url_for('use_database', db_name=db_name, user=user, password=password) }}" class="back-link">Back</a>
         </div>
     </div>
 </body>
