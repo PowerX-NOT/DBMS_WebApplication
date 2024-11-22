@@ -1,0 +1,77 @@
+/* General background */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #b06ab3, #4568dc);
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top: 0;
+    letter-spacing: 1px;
+}
+
+/* Tables box styling */
+.tables-box {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 95%; /* Increased width to take up more screen space */
+    max-width: 1200px; /* Allowing more content in wider screens */
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #4568dc;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+/* Back link styling */
+.back-link {
+    text-align: center;
+    font-size: 1rem;
+    color: #4568dc;
+    text-decoration: none;
+    margin-top: 20px;
+    display: block;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

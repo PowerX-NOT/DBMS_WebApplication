@@ -1,0 +1,74 @@
+/* General background */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #b06ab3, #4568dc);
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top: 0;
+    letter-spacing: 1px;
+}
+
+/* Tables box styling */
+.tables-box {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Action buttons */
+.action-btn {
+    background: #4568dc;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.action-btn:hover {
+    background: #3651a8;
+}
+
+/* Back link styling */
+.back-link {
+    text-align: center;
+    font-size: 1rem;
+    color: #4568dc;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

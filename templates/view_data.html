@@ -4,29 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ table_name }} Data</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='view.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Data in {{ table_name }}</h1>
-        <table>
-            <thead>
-                <tr>
-                    {% for column in columns %}
-                    <th>{{ column }}</th>
+    <div class="background">
+        <div class="header">
+            <h1>Data in {{ table_name }}</h1>
+        </div>
+        <div class="tables-box">
+            <table>
+                <thead>
+                    <tr>
+                        {% for column in columns %}
+                        <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                    <tr>
+                        {% for value in row %}
+                        <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
                     {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in rows %}
-                <tr>
-                    {% for value in row %}
-                    <td>{{ value }}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+            <a href="{{ url_for('use_database') }}" class="back-link">Back</a>
+        </div>
     </div>
 </body>
 </html>
