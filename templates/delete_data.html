@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Data from {{ table_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Data from {{ table_name }}</h1>
+        <form action="{{ url_for('delete_data', table_name=table_name) }}" method="POST">
+            <input type="hidden" name="db_name" value="{{ db_name }}">
+            <input type="hidden" name="user" value="{{ user }}">
+            <input type="hidden" name="password" value="{{ password }}">
+            <label for="condition">Condition (e.g., id = 1):</label>
+            <input type="text" id="condition" name="condition" required>
+            <button type="submit">Delete Data</button>
+        </form>
+        <a href="{{ url_for('use_database') }}" class="back-link">Back</a>
+    </div>
+</body>
+</html>

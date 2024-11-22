@@ -1,16 +1,25 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<h2>Select a Database</h2>
-<form method="post" action="{{ url_for('use_database') }}">
-    <input type="hidden" name="user" value="{{ user }}">
-    <input type="hidden" name="password" value="{{ password }}">
-    <select name="database">
-        {% for db in databases %}
-        <option value="{{ db }}">{{ db }}</option>
-        {% endfor %}
-    </select>
-    <button type="submit">Use Database</button>
-</form>
-{% endblock %}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Databases</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Databases</h1>
+        <form action="{{ url_for('use_database') }}" method="POST">
+            <input type="hidden" name="user" value="{{ user }}">
+            <input type="hidden" name="password" value="{{ password }}">
+            <ul>
+                {% for database in databases %}
+                <li>
+                    <button type="submit" name="database" value="{{ database }}">{{ database }}</button>
+                </li>
+                {% endfor %}
+            </ul>
+        </form>
+    </div>
+</body>
+</html>

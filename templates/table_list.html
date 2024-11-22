@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tables</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tables in {{ db_name }}</h1>
+        <ul>
+            {% for table in tables %}
+            <li>
+                <!-- Adjusted form action to include the table_name in the URL -->
+                <form action="{{ url_for('table_actions', table_name=table) }}" method="POST">
+                    <input type="hidden" name="db_name" value="{{ db_name }}">
+                    <input type="hidden" name="user" value="{{ user }}">
+                    <input type="hidden" name="password" value="{{ password }}">
+                    <button type="submit" name="action" value="view_data">View Data</button>
+                    <button type="submit" name="action" value="add_data">Add Data</button>
+                    <button type="submit" name="action" value="update_data">Update Data</button>
+                    <button type="submit" name="action" value="delete_data">Delete Data</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
