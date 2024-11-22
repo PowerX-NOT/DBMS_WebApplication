@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Databases</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='database_list.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Databases</h1>
-        <form action="{{ url_for('use_database') }}" method="POST">
-            <input type="hidden" name="user" value="{{ user }}">
-            <input type="hidden" name="password" value="{{ password }}">
-            <ul>
-                {% for database in databases %}
-                <li>
-                    <button type="submit" name="database" value="{{ database }}">{{ database }}</button>
-                </li>
-                {% endfor %}
-            </ul>
-        </form>
+    <div class="background">
+        <div class="header">
+            <h1>Databases</h1>
+        </div>
+        <div class="databases-box">
+            <form action="{{ url_for('use_database') }}" method="POST">
+                <input type="hidden" name="user" value="{{ user }}">
+                <input type="hidden" name="password" value="{{ password }}">
+                <ul class="databases-list">
+                    {% for database in databases %}
+                    <li>
+                        <button class="database-btn" type="submit" name="database" value="{{ database }}">{{ database }}</button>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </form>
+        </div>
     </div>
 </body>
 </html>
